@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Fredoka_One, Space_Grotesk } from "next/font/google";
+import { Fredoka, Space_Grotesk } from "next/font/google";
 
 import { ThemeSync } from "@/components/layout/theme-sync";
 import "./globals.css";
 
-const fredokaOne = Fredoka_One({
+const fredokaOne = Fredoka({
   variable: "--font-fredoka-one",
   subsets: ["latin"],
-  weight: "400",
+  weight: "500",
 });
 
 const spaceGrotesk = Space_Grotesk({
