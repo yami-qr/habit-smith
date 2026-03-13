@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Manrope, Space_Grotesk } from "next/font/google";
+import { Fredoka, Space_Grotesk } from "next/font/google";
+
+import { ThemeSync } from "@/components/layout/theme-sync";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const fredoka = Fredoka({
+  variable: "--font-fredoka",
   subsets: ["latin"],
 });
 
@@ -24,7 +26,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${spaceGrotesk.variable} antialiased`}>
+      <body className={`${fredoka.variable} ${spaceGrotesk.variable} antialiased`}>
+        <ThemeSync />
         {children}
       </body>
     </html>

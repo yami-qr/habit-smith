@@ -11,14 +11,14 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-manrope);
+  --font-sans: var(--font-fredoka);
   --font-mono: var(--font-space-grotesk);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-manrope), sans-serif;
+  font-family: var(--font-fredoka), sans-serif;
 }
 
 h1,
@@ -26,4 +26,32 @@ h2,
 h3,
 h4 {
   font-family: var(--font-space-grotesk), sans-serif;
+}
+
+html[data-theme="dark"] {
+  --background: #0b1020;
+  --foreground: #e5e7eb;
+}
+
+html[data-theme="dark"] .bg-white,
+html[data-theme="dark"] .bg-white\/90,
+html[data-theme="dark"] .bg-white\/80 {
+  background-color: #111827 !important;
+}
+
+html[data-theme="dark"] .text-zinc-900 {
+  color: #f3f4f6 !important;
+}
+
+html[data-theme="dark"] .text-zinc-700,
+html[data-theme="dark"] .text-zinc-600,
+html[data-theme="dark"] .text-zinc-500 {
+  color: #cbd5e1 !important;
+}
+
+html[data-theme="dark"] .border-zinc-200,
+html[data-theme="dark"] .border-zinc-100,
+html[data-theme="dark"] .border-white\/60,
+html[data-theme="dark"] .border-white\/50 {
+  border-color: #334155 !important;
 }
