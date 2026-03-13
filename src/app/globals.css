@@ -11,14 +11,14 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-fredoka);
+  --font-sans: var(--font-fredoka-one);
   --font-mono: var(--font-space-grotesk);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-fredoka), sans-serif;
+  font-family: var(--font-fredoka-one), sans-serif;
 }
 
 h1,

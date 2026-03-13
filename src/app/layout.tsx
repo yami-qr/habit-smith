@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Fredoka, Space_Grotesk } from "next/font/google";
+import { Fredoka_One, Space_Grotesk } from "next/font/google";
 
 import { ThemeSync } from "@/components/layout/theme-sync";
 import "./globals.css";
 
-const fredoka = Fredoka({
-  variable: "--font-fredoka",
+const fredokaOne = Fredoka_One({
+  variable: "--font-fredoka-one",
   subsets: ["latin"],
+  weight: "400",
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -26,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="dark">
-      <body className={`${fredoka.variable} ${spaceGrotesk.variable} antialiased`}>
+      <body className={`${fredokaOne.variable} ${spaceGrotesk.variable} antialiased`}>
         <ThemeSync />
         {children}
       </body>
