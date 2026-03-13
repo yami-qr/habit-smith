@@ -13,7 +13,7 @@ export function ActivityFeed({ items }: { items: ActivityItem[] }) {
           <li key={item.id} className="rounded-xl border border-zinc-100 px-3 py-2">
             <p className="text-sm text-zinc-800">{item.description}</p>
             <p className="mt-1 text-xs text-zinc-500">
-              @{item.username} · {formatDistanceToNow(new Date(item.createdAt), { addSuffix: true })}
+              @{item.username} Â· {formatDistanceToNow(new Date(item.createdAt), { addSuffix: true })}
             </p>
           </li>
         ))}

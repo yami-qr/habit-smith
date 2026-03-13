@@ -1,4 +1,4 @@
-﻿import {
+import {
   eachDayOfInterval,
   endOfMonth,
   endOfWeek,

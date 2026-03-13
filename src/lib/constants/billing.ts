@@ -1,4 +1,4 @@
-﻿export const FREE_PLAN_LIMITS = {
+export const FREE_PLAN_LIMITS = {
   habits: 5,
   analytics: "basic",
   socialConnections: 5,

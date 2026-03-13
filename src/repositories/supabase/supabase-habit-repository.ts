@@ -1,4 +1,4 @@
-﻿/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { HabitRepository } from "@/repositories/interfaces";
 import type { Habit, HabitLog } from "@/types";
 

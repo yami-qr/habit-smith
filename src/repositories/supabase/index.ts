@@ -1,4 +1,4 @@
-﻿export { SupabaseAuthRepository } from "@/repositories/supabase/supabase-auth-repository";
+export { SupabaseAuthRepository } from "@/repositories/supabase/supabase-auth-repository";
 export { SupabaseHabitRepository } from "@/repositories/supabase/supabase-habit-repository";
 export {
   SupabaseAnalyticsRepository,

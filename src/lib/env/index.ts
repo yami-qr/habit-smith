@@ -1,1 +1,1 @@
-﻿export * from "@/lib/env/env";
+export * from "@/lib/env/env";

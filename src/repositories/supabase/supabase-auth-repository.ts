@@ -1,4 +1,4 @@
-﻿/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { AuthRepository, AuthSession } from "@/repositories/interfaces";
 import type { Profile } from "@/types";
 
