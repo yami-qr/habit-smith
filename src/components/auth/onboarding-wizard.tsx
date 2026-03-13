@@ -196,7 +196,7 @@ export function OnboardingWizard() {
               Back
             </button>
             <button type="submit" className="rounded-lg bg-zinc-900 px-4 py-2 text-sm font-semibold text-white" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Finish Onboarding"}
+              {isSubmitting ? "Saving..." : "Enter Dashboard"}
             </button>
           </div>
         </form>

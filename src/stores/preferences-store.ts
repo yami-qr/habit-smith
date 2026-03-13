@@ -15,7 +15,7 @@ type PreferencesState = {
 export const usePreferencesStore = create<PreferencesState>()(
   persist(
     (set) => ({
-      theme: "light",
+      theme: "dark",
       notificationsEnabled: true,
       profilePublic: false,
       setTheme: (theme) => set({ theme }),
@@ -23,7 +23,7 @@ export const usePreferencesStore = create<PreferencesState>()(
       toggleProfilePublic: () => set((state) => ({ profilePublic: !state.profilePublic })),
     }),
     {
-      name: "habitsmith-preferences",
+      name: "habitsmith-preferences-v2",
       storage: createJSONStorage(() => localStorage),
     },
   ),
