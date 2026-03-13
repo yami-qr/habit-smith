@@ -78,7 +78,7 @@ export function DashboardOverview() {
       </div>
 
       <section className="rounded-2xl border border-white/60 bg-white/90 p-5 shadow-sm">
-        <h2 className="text-lg font-semibold tracking-tight text-zinc-900">Today's Habits</h2>
+        <h2 className="text-lg font-semibold tracking-tight text-zinc-900">Today&apos;s Habits</h2>
         <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {habits.slice(0, 6).map((habit) => (
             <HabitCard key={habit.id} habit={habit} logs={logs} />

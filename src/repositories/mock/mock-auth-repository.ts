@@ -11,14 +11,18 @@ function makeSession(): AuthSession {
 }
 
 export class MockAuthRepository implements AuthRepository {
-  async login(_email: string, _password: string): Promise<AuthSession> {
+  async login(email: string, password: string): Promise<AuthSession> {
+    void email;
+    void password;
     const session = makeSession();
     inMemorySession = session;
     await this.updateSession(session);
     return session;
   }
 
-  async signup(_email: string, _password: string): Promise<AuthSession> {
+  async signup(email: string, password: string): Promise<AuthSession> {
+    void email;
+    void password;
     const session = makeSession();
     inMemorySession = session;
     await this.updateSession(session);
@@ -30,7 +34,8 @@ export class MockAuthRepository implements AuthRepository {
     await this.updateSession(null);
   }
 
-  async forgotPassword(_email: string): Promise<void> {
+  async forgotPassword(email: string): Promise<void> {
+    void email;
     return Promise.resolve();
   }
 
@@ -58,7 +63,8 @@ export class MockAuthRepository implements AuthRepository {
     window.localStorage.setItem(SESSION_KEY, JSON.stringify(session));
   }
 
-  async completeOnboarding(_userId: string, updates: Partial<Profile>): Promise<void> {
+  async completeOnboarding(userId: string, updates: Partial<Profile>): Promise<void> {
+    void userId;
     mockProfile.onboardingComplete = true;
     Object.assign(mockProfile, updates);
   }

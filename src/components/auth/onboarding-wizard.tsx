@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { ZodError } from "zod";
 
 import { services } from "@/services";
@@ -23,7 +23,7 @@ export function OnboardingWizard() {
   const [step, setStep] = useState(1);
 
   const {
-    watch,
+    control,
     setValue,
     handleSubmit,
     setError,
@@ -36,8 +36,9 @@ export function OnboardingWizard() {
     },
   });
 
-  const selectedGoals = watch("goals");
-  const selectedStarterHabits = watch("starterHabits");
+  const selectedGoals = useWatch({ control, name: "goals" });
+  const selectedStarterHabits = useWatch({ control, name: "starterHabits" });
+  const reminderPreference = useWatch({ control, name: "reminderPreference" });
 
   const starterHabitOptions = useMemo(
     () => Array.from(new Set(selectedGoals.flatMap((goal) => starterHabitMap[goal]))),
@@ -183,7 +184,7 @@ export function OnboardingWizard() {
                 <input
                   type="radio"
                   value={option.value}
-                  checked={watch("reminderPreference") === option.value}
+                  checked={reminderPreference === option.value}
                   onChange={() => setValue("reminderPreference", option.value as OnboardingInput["reminderPreference"])}
                 />
               </label>

@@ -5,7 +5,8 @@ import { mockActivityFeed, mockFriends, mockLeaderboard } from "@/lib/constants/
 let friendsDb = [...mockFriends];
 
 export class MockSocialRepository implements SocialRepository {
-  async getFriends(_userId: string): Promise<Friend[]> {
+  async getFriends(userId: string): Promise<Friend[]> {
+    void userId;
     return friendsDb;
   }
 
@@ -23,11 +24,13 @@ export class MockSocialRepository implements SocialRepository {
     friendsDb = friendsDb.map((friend) => (friend.id === friendId ? { ...friend, isFollowing: true } : friend));
   }
 
-  async getActivityFeed(_userId: string): Promise<ActivityItem[]> {
+  async getActivityFeed(userId: string): Promise<ActivityItem[]> {
+    void userId;
     return mockActivityFeed;
   }
 
-  async getLeaderboard(_userId: string): Promise<LeaderboardEntry[]> {
+  async getLeaderboard(userId: string): Promise<LeaderboardEntry[]> {
+    void userId;
     return mockLeaderboard;
   }
 }

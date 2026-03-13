@@ -31,7 +31,8 @@ export class MockAnalyticsRepository implements AnalyticsRepository {
       }));
   }
 
-  async getWeeklyTrend(_userId: string): Promise<Array<{ date: string; completions: number }>> {
+  async getWeeklyTrend(userId: string): Promise<Array<{ date: string; completions: number }>> {
+    void userId;
     const end = endOfWeek(new Date(), { weekStartsOn: 1 });
     const start = startOfWeek(end, { weekStartsOn: 1 });
 
@@ -41,7 +42,8 @@ export class MockAnalyticsRepository implements AnalyticsRepository {
     }));
   }
 
-  async getMonthlyTrend(_userId: string): Promise<Array<{ week: string; completionRate: number }>> {
+  async getMonthlyTrend(userId: string): Promise<Array<{ week: string; completionRate: number }>> {
+    void userId;
     return Array.from({ length: 4 }, (_, idx) => ({
       week: formatISO(subWeeks(new Date(), 3 - idx), { representation: "date" }),
       completionRate: Math.floor(Math.random() * 25) + 65,
@@ -58,7 +60,8 @@ export class MockAnalyticsRepository implements AnalyticsRepository {
     return Object.entries(map).map(([category, value]) => ({ category, value }));
   }
 
-  async getLeaderboardPreview(_userId: string): Promise<LeaderboardEntry[]> {
+  async getLeaderboardPreview(userId: string): Promise<LeaderboardEntry[]> {
+    void userId;
     return mockLeaderboard.slice(0, 3);
   }
 }

@@ -9,7 +9,8 @@ export class MockBillingRepository implements BillingRepository {
     return mockPlans;
   }
 
-  async getSubscription(_userId: string): Promise<UserSubscription> {
+  async getSubscription(userId: string): Promise<UserSubscription> {
+    void userId;
     return subscriptionDb;
   }
 
@@ -26,7 +27,8 @@ export class MockBillingRepository implements BillingRepository {
     return { checkoutUrl: "/dashboard/settings?upgraded=true" };
   }
 
-  async cancelSubscription(_userId: string): Promise<void> {
+  async cancelSubscription(userId: string): Promise<void> {
+    void userId;
     subscriptionDb.cancelAtPeriodEnd = true;
     subscriptionDb.status = "canceled";
   }
