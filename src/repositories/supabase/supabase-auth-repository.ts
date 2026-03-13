@@ -1,4 +1,5 @@
-﻿import type { AuthRepository, AuthSession } from "@/repositories/interfaces";
+﻿/* eslint-disable @typescript-eslint/no-unused-vars */
+import type { AuthRepository, AuthSession } from "@/repositories/interfaces";
 import type { Profile } from "@/types";
 
 export class SupabaseAuthRepository implements AuthRepository {

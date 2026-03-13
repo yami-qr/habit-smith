@@ -1,4 +1,5 @@
-﻿import type {
+﻿/* eslint-disable @typescript-eslint/no-unused-vars */
+import type {
   AnalyticsRepository,
   BillingRepository,
   ProfileRepository,

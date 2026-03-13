@@ -1,4 +1,5 @@
-﻿import type { HabitRepository } from "@/repositories/interfaces";
+﻿/* eslint-disable @typescript-eslint/no-unused-vars */
+import type { HabitRepository } from "@/repositories/interfaces";
 import type { Habit, HabitLog } from "@/types";
 
 export class SupabaseHabitRepository implements HabitRepository {
