@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { BarChart3, CheckCircle2, Flame, ListTodo } from "lucide-react";
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis, Area, AreaChart } from "recharts";
+import { useEffect, useState } from "react";
+import { BarChart3, CheckCircle2, ListTodo } from "lucide-react";
+import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 import { PremiumUpgradeCard } from "@/components/billing/premium-upgrade-card";
 import { StatCard } from "@/components/dashboard/stat-card";
@@ -28,7 +28,6 @@ export function DashboardOverview() {
   const [habits, setHabits] = useState<Habit[]>([]);
   const [logs, setLogs] = useState<HabitLog[]>([]);
   const [weeklyTrend, setWeeklyTrend] = useState<Array<{ date: string; completions: number }>>([]);
-  const [monthlyTrend, setMonthlyTrend] = useState<Array<{ week: string; completionRate: number }>>([]);
   const [activity, setActivity] = useState<ActivityItem[]>([]);
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
 
@@ -37,12 +36,11 @@ export function DashboardOverview() {
       if (!session?.user.id) return;
 
       const userId = session.user.id;
-      const [nextStats, nextHabits, nextLogs, nextWeekly, nextMonthly, nextActivity, nextLeaderboard] = await Promise.all([
+      const [nextStats, nextHabits, nextLogs, nextWeekly, nextActivity, nextLeaderboard] = await Promise.all([
         services.analytics.getDashboardStats(userId),
         services.habits.getHabits(userId),
         services.habits.getHabitLogs(userId),
         services.analytics.getWeeklyTrend(userId),
-        services.analytics.getMonthlyTrend(userId),
         services.social.getActivityFeed(userId),
         services.analytics.getLeaderboardPreview(userId),
       ]);
@@ -51,22 +49,12 @@ export function DashboardOverview() {
       setHabits(nextHabits.filter((habit) => !habit.archived));
       setLogs(nextLogs);
       setWeeklyTrend(nextWeekly);
-      setMonthlyTrend(nextMonthly);
       setActivity(nextActivity);
       setLeaderboard(nextLeaderboard);
     };
 
     void loadData();
   }, [session?.user.id]);
-
-  const completionBars = useMemo(
-    () => [
-      { label: "Completion rate", value: stats.completionRate },
-      { label: "Weekly momentum", value: Math.min(100, stats.completionRate + 9) },
-      { label: "Monthly consistency", value: Math.min(100, stats.completionRate + 4) },
-    ],
-    [stats.completionRate],
-  );
 
   return (
     <div className="space-y-6">
@@ -86,24 +74,7 @@ export function DashboardOverview() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-white/60 bg-white/90 p-5 shadow-sm">
-        <h2 className="text-lg font-semibold tracking-tight text-zinc-900">Completion Progress</h2>
-        <div className="mt-4 space-y-4">
-          {completionBars.map((bar) => (
-            <div key={bar.label}>
-              <div className="flex items-center justify-between text-sm">
-                <p className="text-zinc-600">{bar.label}</p>
-                <p className="font-semibold text-zinc-900">{bar.value}%</p>
-              </div>
-              <div className="mt-1 h-2 overflow-hidden rounded-full bg-zinc-100">
-                <div className="h-full rounded-full bg-zinc-900" style={{ width: `${bar.value}%` }} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div className="grid gap-5 xl:grid-cols-2">
+      <div className="grid gap-5">
         <ChartCard title="Weekly Completion" subtitle="Daily completions over the last 7 days.">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={weeklyTrend}>
@@ -115,18 +86,6 @@ export function DashboardOverview() {
             </LineChart>
           </ResponsiveContainer>
         </ChartCard>
-
-        <ChartCard title="Monthly Trend" subtitle="Completion rate over recent weeks.">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={monthlyTrend}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e4e4e7" />
-              <XAxis dataKey="week" tick={{ fontSize: 11 }} />
-              <YAxis tick={{ fontSize: 11 }} domain={[0, 100]} />
-              <Tooltip />
-              <Area type="monotone" dataKey="completionRate" stroke="#0f172a" fill="#d4d4d8" />
-            </AreaChart>
-          </ResponsiveContainer>
-        </ChartCard>
       </div>
 
       <div className="grid gap-5 xl:grid-cols-3">
@@ -136,14 +95,7 @@ export function DashboardOverview() {
         <LeaderboardList entries={leaderboard} />
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-2">
-        <section className="rounded-2xl border border-white/60 bg-white/90 p-5 shadow-sm">
-          <h2 className="text-lg font-semibold tracking-tight text-zinc-900">Quick Add Habit</h2>
-          <p className="mt-2 text-sm text-zinc-600">Use the Habits page to create and customize new routines quickly.</p>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-lg bg-zinc-100 px-3 py-2 text-sm text-zinc-700">
-            <Flame className="h-4 w-4" /> Keep streak momentum by adding one new habit today.
-          </div>
-        </section>
+      <div className="grid gap-4">
         <PremiumUpgradeCard />
       </div>
     </div>

@@ -29,7 +29,7 @@ export const mockProfile: Profile = {
   timezone: "Europe/London",
   reminderPreference: "push",
   privacyLevel: "friends",
-  onboardingComplete: true,
+  onboardingComplete: false,
 };
 
 export const mockHabits: Habit[] = [
