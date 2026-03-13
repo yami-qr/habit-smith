@@ -3,6 +3,7 @@ import { eachDayOfInterval, endOfWeek, formatISO, startOfWeek, subWeeks } from "
 import type { AnalyticsRepository } from "@/repositories/interfaces";
 import type { DashboardStats, LeaderboardEntry, StreakSummary } from "@/types";
 import { mockHabitLogs, mockHabits, mockLeaderboard } from "@/lib/constants/mock-data";
+import { buildStreakSummary } from "@/lib/date";
 
 export class MockAnalyticsRepository implements AnalyticsRepository {
   async getDashboardStats(userId: string): Promise<DashboardStats> {
@@ -21,14 +22,7 @@ export class MockAnalyticsRepository implements AnalyticsRepository {
   async getStreakSummaries(userId: string): Promise<StreakSummary[]> {
     return mockHabits
       .filter((habit) => habit.userId === userId)
-      .map((habit) => ({
-        habitId: habit.id,
-        currentStreak: Math.floor(Math.random() * 12) + 2,
-        longestStreak: Math.floor(Math.random() * 30) + 12,
-        weeklyCompletion: Math.floor(Math.random() * 30) + 70,
-        monthlyCompletion: Math.floor(Math.random() * 25) + 65,
-        consistencyScore: Math.floor(Math.random() * 15) + 80,
-      }));
+      .map((habit) => buildStreakSummary(habit, mockHabitLogs));
   }
 
   async getWeeklyTrend(userId: string): Promise<Array<{ date: string; completions: number }>> {
